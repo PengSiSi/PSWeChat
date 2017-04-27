@@ -56,6 +56,11 @@ static NSUInteger const kShowSendTimeInterval = 60;
     [self addRefresh];
 }
 
++ (NSUInteger)editorViewHeight {
+    
+    return kEditorHeight;
+}
+
 #pragma mark - 刷新
 
 - (void)addRefresh {

@@ -10,4 +10,6 @@
 
 @interface ChatRoomViewController : BaseViewController
 
++ (NSUInteger)editorViewHeight;
+
 @end

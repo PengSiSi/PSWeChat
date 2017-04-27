@@ -7,8 +7,7 @@
 //
 
 #import "EditorView.h"
-
-#define EditorHeight (50)
+#import "ChatRoomViewController.h"
 
 @interface EditorView ()<UITextViewDelegate>
 
@@ -62,7 +61,7 @@
     CGFloat increaseHeight = (lineCount - 1) * lineHeight;
     // 修改当前editor视图的高度
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(EditorHeight + increaseHeight);
+        make.height.mas_equalTo([ChatRoomViewController editorViewHeight] + increaseHeight);
     }];
     
     // 动画更新父视图的frame
