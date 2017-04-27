@@ -1,0 +1,53 @@
+//
+//  MediaView.h
+//  Donghuamen
+//
+//  Created by AlicePan on 16/11/29.
+//  Copyright © 2016年 Combanc. All rights reserved.
+//  显示图片、小视频、语音的View，带有删除功能;显示最后一个大加号并且可以添加图片
+
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSUInteger, MediaViewType) { //多媒体类型
+    photoType = 0, //图片
+    sightType = 1, //小视频
+    soundType, //音频
+};
+
+@interface MediaView : UIView
+
+@property (strong, nonatomic) NSMutableArray *mediaArray;/**< 多媒体数组 成员变量是NSUrl ShareFileListModel 或者是NSURL，或者是UIImage*/
+@property (assign, nonatomic) MediaViewType mediaViewType;/**< 多媒体类型*/
+
+@property (nonatomic, strong) UICollectionView *collectionView;/**<分享图片 */
+
+@property (assign, nonatomic) BOOL isAllowDelete;/**< 有删除功能，默认是no*/
+@property (assign, nonatomic) BOOL showLastPlusSign;/**< 显示最后一个加号 一般用于图片类型 默认为no*/
+
+@property (assign, nonatomic) CGSize mediaSize;/**< 宽度*/
+@property (assign, nonatomic) CGFloat mediaSpace;/**< 间距，默认的边距是每张图片之间的距离 默认是6*/
+@property (assign, nonatomic) NSInteger columnNum;/**< 列的个数主要是图片需要,默认3个。自定义需要先设置列个数，在设置数组*/
+
+
+@property (copy, nonatomic) void(^tapSightView) (BOOL needDownload, NSString *sightDownloadPath, UIImage *coverImage);/**< 小视频点击方法*/
+@property (copy, nonatomic) void(^tapVoiceView) (BOOL needDownload, NSString *voicePath, NSInteger voiceSeconds);/**< 小视频点击方法*/
+@property (copy, nonatomic) void(^deleteMediaBlock) (NSInteger index);/**< 删除多媒体回调方法*/
+@property (copy, nonatomic) void(^plusSignClickBlock) (NSIndexPath *indexPath);/**< 大加号点击事件*/
+@property (copy, nonatomic) void(^sightViewClick) (BOOL needDownload, NSString *sightDownloadPath, UIImage *coverImage);/**< 小视频点击事件*/
+
+@property (assign, nonatomic) BOOL isCompressImage;/**< 是否在选择图片之后或拍照之后就压缩图片 默认是NO*/
+@property (assign, nonatomic) BOOL showFlatAlertView;/**< 是否显示扁平的alertView 默认是no*/
+@property (assign, nonatomic) NSInteger photoMaxCount;/**< 照片的最大个数*/
+
+
+//@property (nonatomic, copy) void(^presentBlock)(id presentVC);/**跳转页面回调 */
+//@property (nonatomic, copy) void(^dismissBlock)(id dismissVC);/**返回页面回调 */
+//@property (nonatomic, copy) void(^selectImageBlock)(NSMutableArray *imageArray,NSMutableArray *fileNameArray,NSMutableArray *sizeArray,NSMutableArray *userNameArray);/**选择的图片信息回调 */
+
+
+//根据数组计算mediaView的高度
+- (CGSize)getMediaViewHeightFromMediaArray:(NSMutableArray *)mediaArray;
+//collectView更改frame
+- (void)resetCollectionViewFrame;
+
+@end

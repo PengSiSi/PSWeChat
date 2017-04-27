@@ -1,0 +1,64 @@
+//
+//  MediaPhotoCollectionViewCell.m
+//  Donghuamen
+//
+//  Created by AlicePan on 17/3/1.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import "MediaPhotoCollectionViewCell.h"
+#define DELETE_BTN_WIDTH (30)
+
+@implementation MediaPhotoCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        [self createUI];
+    }
+    return self;
+}
+
+#pragma mark - 懒加载
+- (UIImageView *)photoImgV {
+    if (!_photoImgV) {
+        _photoImgV = [[UIImageView alloc] initWithFrame:self.bounds];
+        _photoImgV.clipsToBounds = YES;
+        _photoImgV.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _photoImgV;
+}
+
+- (UIButton *)deleteBtn {
+    if (!_deleteBtn) {
+        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteBtn.frame = CGRectMake(self.bounds.size.width - DELETE_BTN_WIDTH, 0, DELETE_BTN_WIDTH, DELETE_BTN_WIDTH);
+        [_deleteBtn setImage:[UIImage imageNamed:@"contacts_groupinfo_rename_delete"] forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _deleteBtn.hidden = YES;
+    }
+    return _deleteBtn;
+}
+
+#pragma mark - 创建UI
+- (void)createUI {
+    [self.contentView addSubview:self.photoImgV];
+    [self.photoImgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    
+    [self.contentView addSubview:self.deleteBtn];
+    [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.width.height.mas_equalTo(DELETE_BTN_WIDTH);
+    }];
+}
+
+- (void)deleteBtnClick:(UIButton *)sender {
+    if (_deleteButtonClick) {
+        _deleteButtonClick(sender);
+    }
+}
+
+@end

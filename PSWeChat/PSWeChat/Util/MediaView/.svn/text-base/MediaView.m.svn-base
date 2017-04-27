@@ -1,0 +1,495 @@
+//
+//  MediaView.m
+//  Donghuamen
+//
+//  Created by AlicePan on 16/11/29.
+//  Copyright © 2016年 Combanc. All rights reserved.
+//  显示图片、小视频、语音的View，带有删除功能
+
+#import "MediaView.h"
+#import "SDPhotoBrowser.h"
+#import "ShareFileListModel.h"
+#import "CommentAffixModel.h"
+#import "SightView.h"
+#import "ShareFileListModel.h"
+#import "MediaSightCollectionViewCell.h"
+#import "MediaVoiceCollectionViewCell.h"
+#import "MediaPhotoCollectionViewCell.h"
+#import "HJCActionSheet.h"
+#import "WSelectPhoto.h"
+#import "MediaModel.h"
+
+#define MEDIA_PHOTO_CELLID @"MediaPhotoCollectionCellIdentifier"
+#define MEDIA_SIGHT_CELLID @"MediaSightCollectionCellIdentifier"
+#define MEDIA_VOICE_CELLID @"MediaVoiceCollectionCellIdentifier"
+
+@interface MediaView()<UICollectionViewDelegate, UICollectionViewDataSource, SDPhotoBrowserDelegate, UICollectionViewDelegateFlowLayout, HJCActionSheetDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, assign) CGFloat collectionHeight;/**<collection高度 */
+
+@property (nonatomic, strong) NSMutableArray *imageSizeArray;/**图片的大小 */
+@property (nonatomic, strong) NSMutableArray *imageFileNameArray;/**图片的文件名 */
+@property (nonatomic, strong) NSMutableArray *imageUserNameArray;/**图片的重命名 */
+
+@end
+
+@implementation MediaView
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setInitialization];
+        [self createUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame: frame];
+    if (self) {
+        [self setInitialization];
+        [self createUI];
+    }
+    return self;
+}
+
+#pragma mark - 懒加载
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        flowLayout.minimumLineSpacing = _mediaSpace;
+        flowLayout.minimumInteritemSpacing = _mediaSpace;
+        flowLayout.itemSize = _mediaSize;
+        
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout: flowLayout];
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.scrollEnabled = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        //首次添加时默认高度为0
+        [_collectionView registerClass:[MediaPhotoCollectionViewCell class] forCellWithReuseIdentifier:MEDIA_PHOTO_CELLID];
+        [_collectionView registerClass:[MediaSightCollectionViewCell class] forCellWithReuseIdentifier:MEDIA_SIGHT_CELLID];
+        [_collectionView registerClass:[MediaVoiceCollectionViewCell class] forCellWithReuseIdentifier:MEDIA_VOICE_CELLID];
+    }
+    return _collectionView;
+}
+
+- (NSMutableArray *)imageFileNameArray {
+    if (!_imageFileNameArray) {
+        _imageFileNameArray = [[NSMutableArray alloc]init];
+    }
+    return _imageFileNameArray;
+}
+
+- (NSMutableArray *)imageSizeArray {
+    if (!_imageSizeArray) {
+        _imageSizeArray = [[NSMutableArray alloc]init];
+    }
+    return _imageSizeArray;
+}
+
+- (NSMutableArray *)imageUserNameArray {
+    if (!_imageUserNameArray) {
+        _imageUserNameArray = [[NSMutableArray alloc]init];
+    }
+    return _imageUserNameArray;
+}
+
+
+#pragma mark - 设置UI
+- (void)setInitialization {
+    //设置默认值
+    self.collectionHeight = 0;
+    _columnNum = 3;
+    _mediaSpace = 6;
+    _mediaViewType = photoType;
+    _photoMaxCount = 9;
+    
+    CGFloat itemWidth = ((self.bounds.size.width - (_columnNum-1)*_mediaSpace) / _columnNum);
+    if (_mediaViewType == photoType) {
+        _mediaSize = CGSizeMake(itemWidth, itemWidth);
+    } else if (_mediaViewType == sightType) {
+        _mediaSize = CGSizeMake(SIGHT_WIDTH, SIGHT_HEIGHT);
+    } else {
+        _mediaSize = CGSizeMake(itemWidth, itemWidth);
+    }
+}
+
+- (void)createUI {
+    [self addSubview:self.collectionView];
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+//每个UICollectionView大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return _mediaSize;
+}
+
+//---------------不知道小视频这里为什么这么写，但是不这样写的话就不居左，居中---------
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    if (_mediaViewType == photoType) { //图片
+//        return UIEdgeInsetsMake(0, 0, _mediaSpace, _mediaSpace);
+//    } else if (_mediaViewType == sightType) { //小视频
+//        return UIEdgeInsetsMake(0, 0, 0 , self.bounds.size.width - _mediaSize.width);
+//    } else { //语音
+//        return UIEdgeInsetsMake(0, 0, _mediaSpace, _mediaSpace);
+//    }
+    if (_mediaViewType == sightType) { //小视频
+        return UIEdgeInsetsMake(0, 0, 0 , self.bounds.size.width - _mediaSize.width);
+    }
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    if (_mediaViewType == photoType) { //图片
+        return _mediaSpace;
+    } else if (_mediaViewType == sightType) { //小视频
+        return 0;
+    } else { //语音
+        return _mediaSpace;
+    }
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    if (_mediaViewType == photoType) { //图片
+        return _mediaSpace;
+    } else if (_mediaViewType == sightType) { //小视频
+        return 0;
+    } else { //语音
+        return _mediaSpace;
+    }
+}
+
+#pragma mark - CollectionViewDelegate && DataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (_showLastPlusSign) {
+        return _mediaArray.count + 1;
+    }
+    return _mediaArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_mediaViewType == photoType) { //图片格式
+        MediaPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MEDIA_PHOTO_CELLID forIndexPath:indexPath];
+        if (_showLastPlusSign && indexPath.item == _mediaArray.count && _showLastPlusSign) { //大加号
+            [self configurePlusSignCell:cell atIndexPath:indexPath];
+        } else {
+            [self configureMediaPhotoCollectionViewCell:cell atIndexPath:indexPath];
+        }
+        return cell;
+    } else if (_mediaViewType == sightType) { //小视频
+        MediaSightCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MEDIA_SIGHT_CELLID forIndexPath:indexPath];
+        [self configureMediaSightCollectionViewCell:cell atIndexPath:indexPath];
+        return cell;
+    } else { //语音
+        MediaVoiceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MEDIA_VOICE_CELLID forIndexPath:indexPath];
+        [self configureMediaVoiceCollectionViewCell:cell atIndexPath:indexPath];
+        return cell;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath { //点击事件
+    if (_mediaViewType == photoType) { //图片
+        if (_mediaArray.count == indexPath.item && _showLastPlusSign) { //大加号点击事件
+            [self plusSignCollectionView:collectionView didSelectItemAtIndexPath:indexPath];
+        } else {
+            SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+            browser.sourceImagesContainerView = self.collectionView; // 原图的父控件
+            browser.imageCount = self.mediaArray.count; // 图片总数
+            browser.currentImageIndex = indexPath.item;
+            browser.delegate = self;
+            [browser show];
+        }
+    } else if (_mediaViewType == soundType) { //语音
+        
+    } else if (_mediaViewType == sightType) { //小视频
+
+//        @property (copy, nonatomic) void(^sightViewClick) (BOOL needDownload, NSString *sightDownloadPath, UIImage *coverImage);/**< 小视频点击事件*/
+    }
+}
+
+#pragma mark - 大加号点击事件
+- (void)plusSignCollectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_showFlatAlertView) {
+        HJCActionSheet *sheet = [[HJCActionSheet alloc] initWithDelegate:self CancelTitle:@"取消" OtherTitles:@"拍照", @"从手机相册选择", nil];
+        // 2.显示出来
+        [sheet show];
+    } else {
+        //点击提示选择相机或者相册
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self
+                                                       cancelButtonTitle:@"取消"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"拍照", @"从手机相册选择",nil];
+        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [actionSheet showInView:self];
+    }
+    
+    
+//        [SelectPhotoViewController sharedInstance].showFlatAlertView = YES;
+//        [SelectPhotoViewController sharedInstance].haveSmallVideo = NO;
+//        [[SelectPhotoViewController sharedInstance] selectPhotoAction];
+//        [SelectPhotoViewController sharedInstance].isKeepLastImage = YES;
+//        [SelectPhotoViewController sharedInstance].selectPhotoMaxCount = _photoMaxCount;
+//        
+//        __weak typeof(self) weakSelf = self;
+//        [[SelectPhotoViewController sharedInstance] VCPresentWithBlock:^(id viewController) {
+//            if (weakSelf.presentBlock) {
+//                weakSelf.presentBlock(viewController);
+//            }
+//        }];
+//        
+//        [[SelectPhotoViewController sharedInstance] selectImageWithBlock:^(NSMutableArray *imageArray, NSMutableArray *nameArray, NSMutableArray *sizeArray, NSMutableArray *userNameArray) {
+//            weakSelf.mediaArray = imageArray;
+//            weakSelf.imageFileNameArray = nameArray;
+//            weakSelf.imageUserNameArray = userNameArray;
+//            weakSelf.imageSizeArray = sizeArray;
+//            if (weakSelf.selectImageBlock) {
+//                weakSelf.selectImageBlock(weakSelf.mediaArray, weakSelf.imageFileNameArray, weakSelf.imageSizeArray, weakSelf.imageUserNameArray);
+//            }
+//        }];
+        
+//        [[SelectPhotoViewController sharedInstance] VCDismissWithBlock:^(id dismissVC) {
+//            
+//            if (weakSelf.dismissBlock) {
+//                weakSelf.dismissBlock(dismissVC);
+//            }
+//        }];
+}
+
+#pragma mark - cell 样式
+//普通图片
+- (void)configureMediaPhotoCollectionViewCell:(MediaPhotoCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([[[_mediaArray firstObject] class] isEqual:[NSURL class]]) {
+        //NSURL
+        [cell.photoImgV sd_setImageWithURL:_mediaArray[indexPath.item] placeholderImage:[UIImage imageNamed:K_NOIMAGE_GRAY_BG]];
+    } else if ([[[_mediaArray firstObject] class] isEqual:[UIImage class]]) {
+        //UIImage
+        cell.photoImgV.image = _mediaArray[indexPath.item];
+    } else if ([[_mediaArray firstObject] isKindOfClass:[ShareFileListModel class]]) {
+        //ShareFileListModel
+        ShareFileListModel *model = _mediaArray[indexPath.item];
+        NSString *imageUrl = [NSString stringWithFormat:@"%@%@/%@",KUSERDEFAULT_OBJ4KEY(kJXHDServerUrl),model.filePath,model.fileUseName];
+        [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:K_NOIMAGE_GRAY_BG]];
+    } else if ([[_mediaArray firstObject] isKindOfClass:[MediaModel class]]) {
+        //mediaModel
+        MediaModel *mediaModel = _mediaArray[indexPath.item];
+        if ([mediaModel.imagePath containsString:@"http"]) {
+            [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:mediaModel.imagePath] placeholderImage:[UIImage imageNamed:K_NOIMAGE_GRAY_BG]];
+        } else {
+            cell.photoImgV.image = [UIImage imageWithContentsOfFile:mediaModel.imagePath];
+        }
+    } else {
+        cell.photoImgV.image = [UIImage imageWithData:self.mediaArray[indexPath.item]];
+    }
+    
+    //删除按钮是否显示
+    cell.deleteBtn.hidden = !_isAllowDelete;
+    if (_isAllowDelete) {
+        cell.deleteBtn.tag = indexPath.item;
+        __weak typeof(self) weakSelf = self;
+        [cell setDeleteButtonClick:^(UIButton *button) {
+            if (weakSelf.mediaArray.count > 0) {
+                [weakSelf.mediaArray removeObjectAtIndex:button.tag];
+            }
+            if (weakSelf.deleteMediaBlock) {
+                weakSelf.deleteMediaBlock(indexPath.item);
+            }
+            [weakSelf.collectionView reloadData];
+        }];
+    }
+}
+
+//大加号图片
+- (void)configurePlusSignCell:(MediaPhotoCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.photoImgV.image = [UIImage imageNamed:K_PLUSSIGN_PIC_IMG];
+}
+
+//小视频
+- (void)configureMediaSightCollectionViewCell:(MediaSightCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    if ([[_mediaArray firstObject] isKindOfClass:[MediaModel class]]) { //新增评论回复带附件
+        cell.mediaModel = _mediaArray[indexPath.item];
+    }
+    
+    //小视频点击事件
+    __weak typeof(self) weakSelf = self;
+    [cell setTapSightView:^(BOOL needDownload, NSString *sightPath, UIImage *coverImage) {
+        if (weakSelf.tapSightView) {
+            weakSelf.tapSightView(needDownload, sightPath, coverImage);
+        }
+    }];
+}
+
+//语音
+- (void)configureMediaVoiceCollectionViewCell:(MediaVoiceCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    if ([[_mediaArray firstObject] isKindOfClass:[MediaModel class]]) { //新增评论回复带附件
+        cell.mediaModel = _mediaArray[indexPath.item];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setTapVoice:^(BOOL needDownload, NSString *voicePath, NSInteger voiceSeconds) {
+        if (weakSelf.tapVoiceView) {
+            weakSelf.tapVoiceView(needDownload, voicePath, voiceSeconds);
+        }
+    }];
+}
+
+#pragma mark - photobrowser代理方法
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index {
+    MediaPhotoCollectionViewCell *cell = (MediaPhotoCollectionViewCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    
+    return cell.photoImgV.image;
+}
+
+//返回高质量图片的URL
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index {
+    if ([[_mediaArray firstObject] isKindOfClass:[MediaModel class]]) {
+        MediaModel *model = _mediaArray[index];
+        if (model.highQualityImagePath.length > 0) {
+            return [NSURL URLWithString:model.highQualityImagePath];
+        }
+    }
+    return nil;
+}
+
+#pragma mark - setMethod
+- (void)setMediaViewType:(MediaViewType)mediaViewType {
+    _mediaViewType = mediaViewType;
+    [self.collectionView reloadData];
+}
+
+- (void)setMediaArray:(NSMutableArray *)mediaArray {
+    _mediaArray = mediaArray;
+    if ([[mediaArray firstObject] isKindOfClass:[ShareFileListModel class]]) { //成员变量是ShareFileListModel
+        ShareFileListModel *sightModel = [mediaArray firstObject];
+        if ([sightModel.filePath isEqualToString:@"/file/video"]) { //小视频
+            self.collectionHeight = _mediaSize.height;
+        } else { //图片
+            self.collectionHeight = [self getPhotoCollectionHeight:mediaArray];
+        }
+    } else if ([[mediaArray firstObject] isKindOfClass:[CommentAffixModel class]]) { //成员变量是CommentAffixModel
+        self.collectionHeight = _mediaSize.height;
+    } else if ([[mediaArray firstObject] isKindOfClass:[MediaModel class]]) {
+        if (_mediaViewType == photoType) { //图片
+            CGFloat itemWidth = ((self.bounds.size.width - (_columnNum-1)*_mediaSpace) / _columnNum);
+            _mediaSize = CGSizeMake(itemWidth, itemWidth);
+            self.collectionHeight = [self getPhotoCollectionHeight:mediaArray];
+        } else if (_mediaViewType == sightType) { //小视频
+            _mediaSize = CGSizeMake(SIGHT_WIDTH, SIGHT_HEIGHT);
+            self.collectionHeight = _mediaSize.height;
+        } else { //音频
+            MediaModel *mediaModel = [mediaArray firstObject];
+            _mediaSize = CGSizeMake(VOICE_WIDTH, VOICE_HEIGHT);
+            self.collectionHeight = _mediaSize.height;
+        }
+    } else { //成员变量是url,UIImage
+        
+    }
+    [self.collectionView reloadData];
+}
+
+- (CGFloat)getPhotoCollectionHeight:(NSMutableArray *)array {
+    NSInteger rowCount = 0;
+    CGFloat height = 0;
+    if (_mediaArray.count % _columnNum == 0) {
+        rowCount = _mediaArray.count/_columnNum;
+    } else {
+        rowCount = _mediaArray.count/_columnNum + 1;
+    }
+    if (rowCount > 0) {
+        height = rowCount*_mediaSize.height + (rowCount-1)*_mediaSpace;
+    }
+    return height;
+}
+
+- (void)setIsAllowDelete:(BOOL)isAllowDelete {
+    _isAllowDelete = isAllowDelete;
+    [self.collectionView reloadData];
+}
+
+- (void)setMediaSize:(CGSize)mediaSize {
+    _mediaSize = mediaSize;
+    [self.collectionView reloadData];
+}
+
+- (void)setMediaSpace:(CGFloat)mediaSpace {
+    _mediaSpace = mediaSpace;
+    [self.collectionView reloadData];
+}
+
+- (void)setColumnNum:(NSInteger)columnNum {
+    _columnNum = columnNum;
+    [self.collectionView reloadData];
+}
+
+- (void)setShowLastPlusSign:(BOOL)showLastPlusSign {
+    _showLastPlusSign = showLastPlusSign;
+    if (_mediaArray.count > 0 && self.imageFileNameArray.count == 0) { //先设置mediaArray在设置showLastPlusSign
+        for (NSInteger i = 0; i<_mediaArray.count; i++) {
+            if ([[_mediaArray firstObject] isKindOfClass:[UIImage class]]) {
+                UIImage *image = _mediaArray[i];
+                NSData *imageData = UIImagePNGRepresentation(image);
+                NSInteger length = [imageData length]/1024;
+                [self.imageSizeArray addObject:[NSString stringWithFormat:@"%ld",(long)length]];
+                [self.imageFileNameArray addObject:[[SelectFileManager sharedInstance] getPhotoName]];
+                [self.imageUserNameArray addObject:[[SelectFileManager sharedInstance] getPhotoName]];
+            }
+        }
+     
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObjectsFromArray:_mediaArray];
+        [array addObject:[UIImage imageNamed:K_PLUSSIGN_PIC_IMG]];
+        self.collectionHeight = [self getPhotoCollectionHeight:array];
+    }
+    [self.collectionView reloadData];
+}
+
+- (void)setPhotoMaxCount:(NSInteger)photoMaxCount {
+    _photoMaxCount = photoMaxCount;
+}
+
+- (void)setShowFlatAlertView:(BOOL)showFlatAlertView {
+    _showFlatAlertView = showFlatAlertView;
+}
+
+- (void)setIsCompressImage:(BOOL)isCompressImage {
+    _isCompressImage = isCompressImage;
+}
+
+#pragma mark - publicMethod
+//collectView更改frame
+- (void)resetCollectionViewFrame {
+    self.collectionView.frame = self.bounds;
+    [self.collectionView reloadData];
+}
+
+- (CGSize)getMediaViewHeightFromMediaArray:(NSMutableArray *)mediaArray {
+    return CGSizeMake(self.bounds.size.width, self.collectionHeight);
+}
+
+- (void)dealloc
+{
+//    self.collectionView = nil;
+    self.mediaSize = CGSizeZero;
+    self.columnNum = 0;
+    self.mediaSpace = 0;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end

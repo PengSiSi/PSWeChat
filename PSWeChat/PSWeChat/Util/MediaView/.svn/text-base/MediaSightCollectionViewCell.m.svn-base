@@ -1,0 +1,77 @@
+//
+//  MediaSightCollectionViewCell.m
+//  Donghuamen
+//
+//  Created by AlicePan on 17/1/4.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import "MediaSightCollectionViewCell.h"
+
+#define DELETE_BTN_WIDTH (30)
+
+@interface MediaSightCollectionViewCell()
+
+@property (strong, nonatomic) SightView *sightView;/**< 小视频的View*/
+@property (strong, nonatomic) UIButton *deleteBtn;/**< 删除按钮*/
+
+@end
+
+@implementation MediaSightCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self createUI];
+    }
+    return self;
+}
+#pragma mark - 懒加载
+- (SightView *)sightView {
+    if (!_sightView) {
+        _sightView = [[SightView alloc] initWithFrame:self.contentView.bounds];
+    }
+    return _sightView;
+}
+
+- (UIButton *)deleteBtn {
+    if (!_deleteBtn) {
+        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteBtn.frame = CGRectMake(self.bounds.size.width - DELETE_BTN_WIDTH, 0, DELETE_BTN_WIDTH, DELETE_BTN_WIDTH);
+        [_deleteBtn setImage:[UIImage imageNamed:@"contacts_groupinfo_rename_delete"] forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _deleteBtn.hidden = YES;
+    }
+    return _deleteBtn;
+}
+
+#pragma mark - 创建UI
+- (void)createUI {
+    
+    [self.contentView addSubview:self.sightView];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.sightView setTapSightView:^(BOOL needDownload, NSString *sightDownloadPath, UIImage *coverImage) {
+        if (weakSelf.tapSightView) {
+            weakSelf.tapSightView(needDownload, sightDownloadPath, coverImage);
+        }
+    }];
+    
+    [self.contentView addSubview:self.deleteBtn];
+}
+
+- (void)deleteBtnClick:(UIButton *)sender {
+    if (_deleteBtnClick) {
+        _deleteBtnClick(sender);
+    }
+}
+
+#pragma mark - setMethod
+
+- (void)setMediaModel:(MediaModel *)mediaModel {
+    _mediaModel = mediaModel;
+    _sightView.mediaModel = mediaModel;
+}
+
+
+@end

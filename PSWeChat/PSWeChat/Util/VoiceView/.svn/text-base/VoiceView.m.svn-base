@@ -1,0 +1,159 @@
+//
+//  VoiceView.m
+//  Donghuamen
+//
+//  Created by AlicePan on 17/3/9.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import "VoiceView.h"
+#import "FileManager.h"
+#define SECONDLABEL_WIDTH 30
+
+#define PLAYVIEW_WIDTH 8
+#define PLAYVIEW_HEIGHT 16
+
+@interface VoiceView ()
+{
+    //判断是否需要先下载
+    BOOL isNeedDownload;
+    NSString *voiceName;
+}
+
+@property (copy, nonatomic) NSString *voicePath;
+
+@end
+
+@implementation VoiceView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self createUI];
+    }
+    return self;
+}
+
+#pragma mark - lazyLoad
+- (UIImageView *)bgImgV {
+    if (!_bgImgV) {
+        _bgImgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width - SECONDLABEL_WIDTH, self.bounds.size.height)];
+        _bgImgV.image = [UIImage imageNamed:@"voice_icon"];
+        _bgImgV.contentMode = UIViewContentModeScaleToFill;
+        _bgImgV.clipsToBounds = YES;
+        _bgImgV.opaque = YES;
+        _bgImgV.clearsContextBeforeDrawing = YES;
+    }
+    return _bgImgV;
+}
+
+- (UIImageView *)playImgV {
+    if (!_playImgV) {
+        _playImgV = [[UIImageView alloc] initWithFrame:CGRectMake(10, (CGRectGetHeight(_bgImgV.frame) - PLAYVIEW_HEIGHT)/2, PLAYVIEW_WIDTH, PLAYVIEW_HEIGHT)];
+        _playImgV.image = [UIImage imageNamed:@"voice_play3_icon"];
+        UIImage *image1 = [UIImage imageNamed:@"voice_play1_icon"];
+        UIImage *image2 = [UIImage imageNamed:@"voice_play2_icon"];
+        UIImage *image3 = [UIImage imageNamed:@"voice_play3_icon"];
+        _playImgV.highlightedAnimationImages = @[image1,image2,image3];
+        _playImgV.animationDuration = 1.5f;
+        _playImgV.animationRepeatCount = NSUIntegerMax;
+    }
+    return _playImgV;
+}
+
+- (UILabel *)secondsLabel {
+    if (!_secondsLabel) {
+        _secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.bgImgV.frame), 0, SECONDLABEL_WIDTH, self.bounds.size.height)];
+        _secondsLabel.text = @"0''";
+        _secondsLabel.font = FONT_13;
+        _secondsLabel.textAlignment = NSTextAlignmentCenter;
+        _secondsLabel.textColor = TEXT_COLOR_GRAY;
+    }
+    return _secondsLabel;
+}
+
+#pragma mark - 创建UI
+- (void)createUI {
+    [self addSubview:self.bgImgV];
+    [self.bgImgV addSubview:self.playImgV];
+    [self addSubview:self.secondsLabel];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapVoiceClick:)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)tapVoiceClick:(UIGestureRecognizer *)tapGes {
+    if (_tapVoiceView) {
+        _tapVoiceView(isNeedDownload, _voicePath, _mediaModel.voiceSeconds);
+    }
+}
+
+#pragma mark - setMethod
+- (void)setMediaModel:(MediaModel *)mediaModel {
+    _mediaModel = mediaModel;
+    if (mediaModel.voicePath.length > 0) {
+
+        voiceName = [[mediaModel.voicePath componentsSeparatedByString:@"/"] lastObject];
+        _voicePath = mediaModel.voicePath;
+        if (mediaModel.voicePath.length > 0 && [[FileManager sharedInstance] fileExitWithPath:K_SHARE_PATH name:voiceName]) {//音频已缓存
+            //实例化播放view
+            isNeedDownload = NO;
+            _voicePath = [[FileManager sharedInstance] getFileFullPathWithName:voiceName filePath:K_SHARE_PATH];
+        } else {
+            isNeedDownload = YES;
+        }
+    }
+    self.secondsLabel.text = [NSString stringWithFormat:@"%ld''", (long)mediaModel.voiceSeconds];
+}
+
+- (void)setVoicePlayState:(VoicePlayState)voicePlayState {
+    if (_voicePlayState != voicePlayState) {
+        _voicePlayState = voicePlayState;
+    }
+    self.secondsLabel.hidden = NO;
+    self.playImgV.hidden = NO;
+    
+    if (_voicePlayState == VoicePlayStatePlaying) {
+        self.playImgV.highlighted = YES;
+        [self.playImgV startAnimating];
+    } else if (_voicePlayState == VoicePlayStateDownloading) {
+        self.playImgV.hidden = YES;
+        self.playImgV.hidden = YES;
+    } else {
+        self.playImgV.highlighted = NO;
+        [self.playImgV stopAnimating];
+    }
+}
+
+#pragma mark - publicMethod
+- (void)resetVoiceViewFrame {
+    self.bgImgV.frame = CGRectMake(0, 0, self.bounds.size.width - SECONDLABEL_WIDTH, self.bounds.size.height);
+    self.playImgV.frame = CGRectMake(10, (CGRectGetHeight(_bgImgV.frame) - PLAYVIEW_HEIGHT)/2, PLAYVIEW_WIDTH, PLAYVIEW_HEIGHT);
+    self.secondsLabel.frame = CGRectMake(CGRectGetMaxX(self.bgImgV.frame), 0, SECONDLABEL_WIDTH, self.bounds.size.height);
+
+    // 加载图片
+    UIImage *image = self.bgImgV.image;
+    // 设置端盖的值
+    CGFloat top = image.size.height * 0.5;
+    CGFloat left = image.size.width * 0.5;
+    CGFloat bottom = image.size.height * 0.5;
+    CGFloat right = image.size.width * 0.5;
+    
+    // 设置端盖的值
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(top, left, bottom, right);
+    // 设置拉伸的模式
+    UIImageResizingMode mode = UIImageResizingModeStretch;
+    // 拉伸图片
+    UIImage *newImage = [image resizableImageWithCapInsets:edgeInsets resizingMode:mode];
+    self.bgImgV.image = newImage;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end

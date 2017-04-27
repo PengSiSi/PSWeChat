@@ -1,0 +1,43 @@
+//
+//  MediaModel.m
+//  Donghuamen
+//
+//  Created by AlicePan on 17/3/9.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import "MediaModel.h"
+
+@implementation MediaModel
+
+//@property (copy, nonatomic) NSString *voicePath;/**< 语音路径*/
+//@property (copy, nonatomic) NSString *voiceSeconds;/**< 语音时间*/
+//
+//@property (copy, nonatomic) NSString *sightPath;/**< 视频路径*/
+//@property (copy, nonatomic) NSString *coverImagePath;/**< 封面图片路径*/
+//@property (strong, nonatomic) UIImage *coverImage;/**< 封面图片Image*/
+
+//语音
+- (void)modelWithVoiceDictionary:(NSDictionary *)dict {
+    if (dict[@"voicePath"]) {
+        _voicePath = dict[@"voicePath"];
+    }
+    if (dict[@"voiceSeconds"]) {
+        _voiceSeconds = [dict[@"voiceSeconds"] integerValue];
+    }
+}
+
+//视频
+- (void)modelWithSightDictionary:(NSDictionary *)dict {
+    if (dict[@"sightPath"]) {
+        _sightPath = dict[@"sightPath"];
+    }
+    if (dict[@"coverImagePath"]) {
+        _coverImagePath = dict[@"coverImagePath"];
+    }
+    if (dict[@"coverImage"]) {
+        _coverImage = dict[@"coverImage"];
+    }
+}
+
+@end

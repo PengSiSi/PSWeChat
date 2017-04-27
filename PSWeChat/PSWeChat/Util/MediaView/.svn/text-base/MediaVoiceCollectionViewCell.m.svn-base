@@ -1,0 +1,74 @@
+//
+//  MediaVoiceCollectionViewCell.m
+//  Donghuamen
+//
+//  Created by AlicePan on 17/1/4.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import "MediaVoiceCollectionViewCell.h"
+#define DELETE_BTN_WIDTH (30)
+
+@interface MediaVoiceCollectionViewCell ()
+
+@property (strong, nonatomic) UIButton *deleteBtn;/**< 删除按钮*/
+
+@end
+
+@implementation MediaVoiceCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self createUI];
+    }
+    return self;
+}
+
+#pragma mark - 懒加载
+- (VoiceView *)voiceView {
+    if (!_voiceView) {
+        _voiceView = [[VoiceView alloc] initWithFrame:self.bounds];
+    }
+    return _voiceView;
+}
+
+- (UIButton *)deleteBtn {
+    if (!_deleteBtn) {
+        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteBtn.frame = CGRectMake(self.bounds.size.width - DELETE_BTN_WIDTH, 0, DELETE_BTN_WIDTH, DELETE_BTN_WIDTH);
+        [_deleteBtn setImage:[UIImage imageNamed:@"contacts_groupinfo_rename_delete"] forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _deleteBtn.hidden = YES;
+    }
+    return _deleteBtn;
+}
+
+- (void)deleteBtnClick:(UIButton *)sender {
+    if (_deleteBtnClick) {
+        _deleteBtnClick(sender);
+    }
+}
+
+#pragma mark - 创建UI
+- (void)createUI {
+    [self.contentView addSubview:self.voiceView];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.voiceView setTapVoiceView:^(BOOL needDownload, NSString *voicePath, NSInteger voiceSeconds) {
+        if (weakSelf.tapVoice) {
+            weakSelf.tapVoice(needDownload, voicePath, voiceSeconds);
+        }
+    }];
+}
+
+#pragma mark - setMethod
+- (void)setMediaModel:(MediaModel *)mediaModel {
+    _mediaModel = mediaModel;
+    self.voiceView.mediaModel = mediaModel;
+    self.voiceView.frame = self.bounds;
+    [self.voiceView resetVoiceViewFrame];
+}
+
+
+@end

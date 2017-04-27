@@ -1,0 +1,23 @@
+//
+//  MediaVoiceCollectionViewCell.h
+//  Donghuamen
+//
+//  Created by AlicePan on 17/1/4.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MediaModel.h"
+#import "VoiceView.h"
+
+@interface MediaVoiceCollectionViewCell : UICollectionViewCell
+
+@property (strong, nonatomic) VoiceView *voiceView;/**< 音频View*/
+
+@property (strong, nonatomic) MediaModel *mediaModel;/**< model*/
+
+@property (copy, nonatomic) void(^deleteBtnClick) (UIButton *button);/**< 删除按钮回调方法*/
+@property (copy, nonatomic) void(^tapVoice) (BOOL needDownload, NSString *voicePath, NSInteger voiceSeconds);/**< 音频View点击事件*/
+
+
+@end

@@ -1,0 +1,19 @@
+//
+//  MediaPhotoCollectionViewCell.h
+//  Donghuamen
+//
+//  Created by AlicePan on 17/3/1.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MediaPhotoCollectionViewCell : UICollectionViewCell
+
+@property (strong, nonatomic) UIImageView *photoImgV;/**< 图片imageView*/
+@property (strong, nonatomic) UIButton *deleteBtn;/**< 删除按钮*/
+
+@property (copy, nonatomic) void (^deleteButtonClick) (UIButton *button);/**< 删除按钮回调方法*/
+
+
+@end

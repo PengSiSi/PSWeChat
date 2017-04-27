@@ -1,0 +1,32 @@
+//
+//  VoiceView.h
+//  Donghuamen
+//
+//  Created by AlicePan on 17/3/9.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//  音频View
+
+#import <UIKit/UIKit.h>
+#import "MediaModel.h"
+
+typedef NS_ENUM(NSUInteger, VoicePlayState){
+    VoicePlayStateNormal,/**< 未播放状态 */
+    VoicePlayStateDownloading,/**< 正在下载中 */
+    VoicePlayStatePlaying,/**< 正在播放 */
+    VoicePlayStateCancel,/**< 播放被取消 */
+};
+
+@interface VoiceView : UIView
+
+@property (strong, nonatomic) UIImageView *bgImgV;/**< 绿色背景imageView*/
+@property (strong, nonatomic) UILabel *secondsLabel;/**< 显示描述的label*/
+@property (strong, nonatomic) UIImageView *playImgV;/**< 显示播放状态的imageView*/
+
+@property (assign, nonatomic) VoicePlayState voicePlayState;
+
+@property (strong, nonatomic) MediaModel *mediaModel;/**< model*/
+
+@property (copy, nonatomic) void(^tapVoiceView) (BOOL needDownload, NSString *voiceDownloadPath, NSInteger voiceSeconds);/**< 音频View点击事件*/
+
+- (void)resetVoiceViewFrame;
+@end

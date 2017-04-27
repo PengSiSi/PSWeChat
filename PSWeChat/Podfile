@@ -1,0 +1,19 @@
+target 'PSWeChat' do
+
+platform :ios, '8.0'
+
+pod 'SDWebImage'
+pod ‘SVProgressHUD'
+pod 'FMDB'
+pod "AFNetworking"
+pod 'Masonry'
+pod 'UITableView+FDTemplateLayoutCell'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'IQKeyboardManager'
+pod 'BaiduMapKit'
+pod 'ZYLocationManager'
+pod 'TTTAttributedLabel'
+
+
+end

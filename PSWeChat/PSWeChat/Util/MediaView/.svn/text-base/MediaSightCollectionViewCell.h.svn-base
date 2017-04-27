@@ -1,0 +1,21 @@
+//
+//  MediaSightCollectionViewCell.h
+//  Donghuamen
+//
+//  Created by AlicePan on 17/1/4.
+//  Copyright © 2017年 Combanc. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "SightView.h"
+#import "MediaModel.h"
+
+@interface MediaSightCollectionViewCell : UICollectionViewCell
+
+@property (strong, nonatomic) MediaModel *mediaModel;/**< mediaModel*/
+
+@property (copy, nonatomic) void(^tapSightView) (BOOL needDownload, NSString *sightDownloadPath, UIImage *coverImage);/**< 小视频点击方法*/
+
+@property (copy, nonatomic) void(^deleteBtnClick) (UIButton *button);/**< 删除按钮回调方法*/
+
+@end
