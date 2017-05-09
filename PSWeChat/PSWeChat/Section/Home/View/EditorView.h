@@ -17,6 +17,16 @@ typedef NS_ENUM(NSInteger, ChatMessageType) {
     ChatMessageTypeVoice
 };
 
+@protocol EditorViewDelegate <NSObject>
+
+- (void)editorViewStartRecordVoice;
+- (void)editorViewCancelRecordVoice;
+- (void)editorViewConfirmRecordVoice;
+- (void)editorViewUpdateCancelRecordVoice;
+- (void)editorViewUpdateContinueRecordVoice;
+
+@end
+
 @interface EditorView : UIView
 
 
@@ -45,5 +55,7 @@ typedef NS_ENUM(NSInteger, ChatMessageType) {
 @property (nonatomic, copy) void (^voiceButtonClick)();
 @property (nonatomic, copy) void (^emojButtonClick)();
 @property (nonatomic, copy) void (^addButtonClick)();
+@property (nonatomic, assign) id<EditorViewDelegate> delegate;
+@property (nonatomic, strong) UIButton *recordButton;
 
 @end

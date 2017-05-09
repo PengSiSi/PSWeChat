@@ -194,6 +194,9 @@
 		F100674C1EA38721004E4A57 /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10067241EA38721004E4A57 /* YYLabel.m */; };
 		F100674D1EA38721004E4A57 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10067271EA38721004E4A57 /* YYTextView.m */; };
 		F100674E1EA38722004E4A57 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F10067291EA38721004E4A57 /* YYWeakProxy.m */; };
+		F10DE0901EC165E1006E01BB /* UITextField+WJ.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE08C1EC165E1006E01BB /* UITextField+WJ.m */; };
+		F10DE0911EC165E1006E01BB /* WJUserSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE08F1EC165E1006E01BB /* WJUserSearchBar.m */; };
+		F10DE0941EC16F76006E01BB /* LGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE0931EC16F76006E01BB /* LGMessageModel.m */; };
 		F17E48E41EAC37400025C0F8 /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F17E48E31EAC37400025C0F8 /* CollectViewController.m */; };
 		F17E48E71EAC38850025C0F8 /* AddCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F17E48E61EAC38850025C0F8 /* AddCollectViewController.m */; };
 		F18921A11EB17F29007D3FBD /* EditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F18921A01EB17F29007D3FBD /* EditorView.m */; };
@@ -214,6 +217,13 @@
 		F1AA436D1EA5DE8700561C9B /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AA436C1EA5DE8700561C9B /* MaskView.m */; };
 		F1AA43731EA5F2A000561C9B /* YCXMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AA43701EA5F2A000561C9B /* YCXMenu.m */; };
 		F1AA43741EA5F2A000561C9B /* YCXMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AA43721EA5F2A000561C9B /* YCXMenuItem.m */; };
+		F1BD0D501EB82EE5008A1C91 /* ContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D421EB82EE5008A1C91 /* ContractViewController.m */; };
+		F1BD0D511EB82EE5008A1C91 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D441EB82EE5008A1C91 /* SearchResultViewController.m */; };
+		F1BD0D521EB82EE5008A1C91 /* AddressBook.json in Resources */ = {isa = PBXBuildFile; fileRef = F1BD0D461EB82EE5008A1C91 /* AddressBook.json */; };
+		F1BD0D531EB82EE5008A1C91 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D481EB82EE5008A1C91 /* FriendModel.m */; };
+		F1BD0D541EB82EE5008A1C91 /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D4B1EB82EE5008A1C91 /* AddressBookCell.m */; };
+		F1BD0D571EB82EFB008A1C91 /* ContractTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D561EB82EFB008A1C91 /* ContractTagViewController.m */; };
+		F1BD0D5A1EB83973008A1C91 /* AddContractTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BD0D591EB83973008A1C91 /* AddContractTagViewController.m */; };
 		F1C02ADF1EA707CE001E1AA8 /* ContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C02ADE1EA707CE001E1AA8 /* ContentTextView.m */; };
 		F1C02B141EA70B22001E1AA8 /* ShareAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C02B131EA70B22001E1AA8 /* ShareAddViewController.m */; };
 		F1C02B4E1EA715DF001E1AA8 /* ShareFileListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C02B4D1EA715DF001E1AA8 /* ShareFileListModel.m */; };
@@ -507,9 +517,6 @@
 		F1C129221EA4A63300253203 /* OfficialAccountToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C128101EA4A63300253203 /* OfficialAccountToolbar.m */; };
 		F1C129231EA4A63300253203 /* RFRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C128121EA4A63300253203 /* RFRecordButton.m */; };
 		F1C129241EA4A63300253203 /* RFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C128141EA4A63300253203 /* RFTextView.m */; };
-		F1C129271EA4C09E00253203 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C129261EA4C09E00253203 /* SearchResultViewController.m */; };
-		F1C1292A1EA4C0F100253203 /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C129291EA4C0F100253203 /* AddressBookCell.m */; };
-		F1C1292D1EA4C38200253203 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C1292C1EA4C38200253203 /* FriendModel.m */; };
 		F1C663AB1EA9C7F9009524B3 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C663AA1EA9C7F9009524B3 /* WalletViewController.m */; };
 		F1C663AE1EA9C910009524B3 /* WalletHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C663AD1EA9C910009524B3 /* WalletHeaderView.m */; };
 		F1C663B11EA9DD3E009524B3 /* WalletCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C663B01EA9DD3E009524B3 /* WalletCollectionViewCell.m */; };
@@ -524,7 +531,10 @@
 		F1D721EC1EB08DA5003505C6 /* InsetsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D721EB1EB08DA5003505C6 /* InsetsTextField.m */; };
 		F1D721F01EB08E63003505C6 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D721EF1EB08E63003505C6 /* DateUtil.m */; };
 		F1D721F71EB0A260003505C6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D721F61EB0A260003505C6 /* Message.m */; };
-		F1EC9FB11EA59DC8008F6E6B /* AddressBook.json in Resources */ = {isa = PBXBuildFile; fileRef = F1EC9FB01EA59DC8008F6E6B /* AddressBook.json */; };
+		F1E537EA1EB85301003E90B7 /* SelectContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E537E91EB85301003E90B7 /* SelectContractViewController.m */; };
+		F1E537ED1EB86C7A003E90B7 /* SelectPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E537EC1EB86C7A003E90B7 /* SelectPersonCell.m */; };
+		F1E537F21EB8752A003E90B7 /* UITextField+DeleteBackward.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E537F11EB8752A003E90B7 /* UITextField+DeleteBackward.m */; };
+		F1E537F51EB87653003E90B7 /* UserSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E537F41EB87653003E90B7 /* UserSearchBar.m */; };
 		F1EC9FB71EA5A126008F6E6B /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EC9FB41EA5A126008F6E6B /* ChineseString.m */; };
 		F1EC9FB81EA5A126008F6E6B /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EC9FB61EA5A126008F6E6B /* pinyin.m */; };
 		F1EC9FBB1EA5BFD2008F6E6B /* HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EC9FBA1EA5BFD2008F6E6B /* HomeSearchViewController.m */; };
@@ -577,7 +587,6 @@
 		F1EFFF191EA066C700D21293 /* AppDelegate+JKRRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF181EA066C700D21293 /* AppDelegate+JKRRootViewController.m */; };
 		F1EFFF1D1EA0671D00D21293 /* UIViewController+JKRStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF1C1EA0671D00D21293 /* UIViewController+JKRStatusBarStyle.m */; };
 		F1EFFF201EA0673B00D21293 /* UIView+JKRTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF1F1EA0673B00D21293 /* UIView+JKRTouch.m */; };
-		F1EFFF231EA0962400D21293 /* ContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF221EA0962400D21293 /* ContractViewController.m */; };
 		F1EFFF261EA0962E00D21293 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF251EA0962E00D21293 /* FindViewController.m */; };
 		F1EFFF291EA0963700D21293 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF281EA0963700D21293 /* HomeViewController.m */; };
 		F1EFFF721EA0BEEE00D21293 /* FriendCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFFF711EA0BEEE00D21293 /* FriendCircleViewController.m */; };
@@ -1154,6 +1163,13 @@
 		F10067271EA38721004E4A57 /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
 		F10067281EA38721004E4A57 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		F10067291EA38721004E4A57 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		F10DE08B1EC165E1006E01BB /* UITextField+WJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+WJ.h"; sourceTree = "<group>"; };
+		F10DE08C1EC165E1006E01BB /* UITextField+WJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+WJ.m"; sourceTree = "<group>"; };
+		F10DE08D1EC165E1006E01BB /* WJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJUser.h; sourceTree = "<group>"; };
+		F10DE08E1EC165E1006E01BB /* WJUserSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJUserSearchBar.h; sourceTree = "<group>"; };
+		F10DE08F1EC165E1006E01BB /* WJUserSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJUserSearchBar.m; sourceTree = "<group>"; };
+		F10DE0921EC16F76006E01BB /* LGMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGMessageModel.h; sourceTree = "<group>"; };
+		F10DE0931EC16F76006E01BB /* LGMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGMessageModel.m; sourceTree = "<group>"; };
 		F17E48E21EAC37400025C0F8 /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
 		F17E48E31EAC37400025C0F8 /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
 		F17E48E51EAC38850025C0F8 /* AddCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectViewController.h; sourceTree = "<group>"; };
@@ -1193,6 +1209,19 @@
 		F1AA43701EA5F2A000561C9B /* YCXMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenu.m; sourceTree = "<group>"; };
 		F1AA43711EA5F2A000561C9B /* YCXMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCXMenuItem.h; sourceTree = "<group>"; };
 		F1AA43721EA5F2A000561C9B /* YCXMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenuItem.m; sourceTree = "<group>"; };
+		F1BD0D411EB82EE5008A1C91 /* ContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractViewController.h; sourceTree = "<group>"; };
+		F1BD0D421EB82EE5008A1C91 /* ContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractViewController.m; sourceTree = "<group>"; };
+		F1BD0D431EB82EE5008A1C91 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		F1BD0D441EB82EE5008A1C91 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		F1BD0D461EB82EE5008A1C91 /* AddressBook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AddressBook.json; sourceTree = "<group>"; };
+		F1BD0D471EB82EE5008A1C91 /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
+		F1BD0D481EB82EE5008A1C91 /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
+		F1BD0D4A1EB82EE5008A1C91 /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
+		F1BD0D4B1EB82EE5008A1C91 /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
+		F1BD0D551EB82EFB008A1C91 /* ContractTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractTagViewController.h; sourceTree = "<group>"; };
+		F1BD0D561EB82EFB008A1C91 /* ContractTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractTagViewController.m; sourceTree = "<group>"; };
+		F1BD0D581EB83973008A1C91 /* AddContractTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContractTagViewController.h; sourceTree = "<group>"; };
+		F1BD0D591EB83973008A1C91 /* AddContractTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContractTagViewController.m; sourceTree = "<group>"; };
 		F1C02ADD1EA707CE001E1AA8 /* ContentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTextView.h; sourceTree = "<group>"; };
 		F1C02ADE1EA707CE001E1AA8 /* ContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTextView.m; sourceTree = "<group>"; };
 		F1C02B121EA70B22001E1AA8 /* ShareAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAddViewController.h; sourceTree = "<group>"; };
@@ -1523,12 +1552,6 @@
 		F1C128121EA4A63300253203 /* RFRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFRecordButton.m; sourceTree = "<group>"; };
 		F1C128131EA4A63300253203 /* RFTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFTextView.h; sourceTree = "<group>"; };
 		F1C128141EA4A63300253203 /* RFTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFTextView.m; sourceTree = "<group>"; };
-		F1C129251EA4C09E00253203 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
-		F1C129261EA4C09E00253203 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
-		F1C129281EA4C0F100253203 /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
-		F1C129291EA4C0F100253203 /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
-		F1C1292B1EA4C38200253203 /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
-		F1C1292C1EA4C38200253203 /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
 		F1C663A91EA9C7F9009524B3 /* WalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewController.h; sourceTree = "<group>"; };
 		F1C663AA1EA9C7F9009524B3 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
 		F1C663AC1EA9C910009524B3 /* WalletHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletHeaderView.h; sourceTree = "<group>"; };
@@ -1564,7 +1587,14 @@
 		F1D721EF1EB08E63003505C6 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F1D721F51EB0A260003505C6 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		F1D721F61EB0A260003505C6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		F1EC9FB01EA59DC8008F6E6B /* AddressBook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AddressBook.json; sourceTree = "<group>"; };
+		F1E537E81EB85301003E90B7 /* SelectContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectContractViewController.h; sourceTree = "<group>"; };
+		F1E537E91EB85301003E90B7 /* SelectContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectContractViewController.m; sourceTree = "<group>"; };
+		F1E537EB1EB86C7A003E90B7 /* SelectPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPersonCell.h; sourceTree = "<group>"; };
+		F1E537EC1EB86C7A003E90B7 /* SelectPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPersonCell.m; sourceTree = "<group>"; };
+		F1E537F01EB8752A003E90B7 /* UITextField+DeleteBackward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+DeleteBackward.h"; sourceTree = "<group>"; };
+		F1E537F11EB8752A003E90B7 /* UITextField+DeleteBackward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+DeleteBackward.m"; sourceTree = "<group>"; };
+		F1E537F31EB87653003E90B7 /* UserSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchBar.h; sourceTree = "<group>"; };
+		F1E537F41EB87653003E90B7 /* UserSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchBar.m; sourceTree = "<group>"; };
 		F1EC9FB31EA5A126008F6E6B /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
 		F1EC9FB41EA5A126008F6E6B /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseString.m; sourceTree = "<group>"; };
 		F1EC9FB51EA5A126008F6E6B /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
@@ -1680,8 +1710,6 @@
 		F1EFFF1C1EA0671D00D21293 /* UIViewController+JKRStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JKRStatusBarStyle.m"; sourceTree = "<group>"; };
 		F1EFFF1E1EA0673B00D21293 /* UIView+JKRTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKRTouch.h"; sourceTree = "<group>"; };
 		F1EFFF1F1EA0673B00D21293 /* UIView+JKRTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKRTouch.m"; sourceTree = "<group>"; };
-		F1EFFF211EA0962400D21293 /* ContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractViewController.h; sourceTree = "<group>"; };
-		F1EFFF221EA0962400D21293 /* ContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractViewController.m; sourceTree = "<group>"; };
 		F1EFFF241EA0962E00D21293 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
 		F1EFFF251EA0962E00D21293 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
 		F1EFFF271EA0963700D21293 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -2858,6 +2886,18 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		F10DE08A1EC165E1006E01BB /* UserSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				F10DE08B1EC165E1006E01BB /* UITextField+WJ.h */,
+				F10DE08C1EC165E1006E01BB /* UITextField+WJ.m */,
+				F10DE08D1EC165E1006E01BB /* WJUser.h */,
+				F10DE08E1EC165E1006E01BB /* WJUserSearchBar.h */,
+				F10DE08F1EC165E1006E01BB /* WJUserSearchBar.m */,
+			);
+			path = UserSearchBar;
+			sourceTree = "<group>";
+		};
 		F17E48DE1EAC370A0025C0F8 /* Collect */ = {
 			isa = PBXGroup;
 			children = (
@@ -3007,6 +3047,88 @@
 				F1AA43721EA5F2A000561C9B /* YCXMenuItem.m */,
 			);
 			path = YCXMenu;
+			sourceTree = "<group>";
+		};
+		F1BD0D3F1EB82EE5008A1C91 /* ContractList */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D401EB82EE5008A1C91 /* Controller */,
+				F1BD0D451EB82EE5008A1C91 /* Model */,
+				F1BD0D491EB82EE5008A1C91 /* View */,
+			);
+			name = ContractList;
+			path = Contract/ContractList;
+			sourceTree = "<group>";
+		};
+		F1BD0D401EB82EE5008A1C91 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D411EB82EE5008A1C91 /* ContractViewController.h */,
+				F1BD0D421EB82EE5008A1C91 /* ContractViewController.m */,
+				F1BD0D431EB82EE5008A1C91 /* SearchResultViewController.h */,
+				F1BD0D441EB82EE5008A1C91 /* SearchResultViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F1BD0D451EB82EE5008A1C91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D461EB82EE5008A1C91 /* AddressBook.json */,
+				F1BD0D471EB82EE5008A1C91 /* FriendModel.h */,
+				F1BD0D481EB82EE5008A1C91 /* FriendModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F1BD0D491EB82EE5008A1C91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D4A1EB82EE5008A1C91 /* AddressBookCell.h */,
+				F1BD0D4B1EB82EE5008A1C91 /* AddressBookCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F1BD0D4C1EB82EE5008A1C91 /* ContractTag */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D4D1EB82EE5008A1C91 /* Controller */,
+				F1BD0D4E1EB82EE5008A1C91 /* Model */,
+				F1BD0D4F1EB82EE5008A1C91 /* View */,
+			);
+			name = ContractTag;
+			path = Contract/ContractTag;
+			sourceTree = "<group>";
+		};
+		F1BD0D4D1EB82EE5008A1C91 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD0D551EB82EFB008A1C91 /* ContractTagViewController.h */,
+				F1BD0D561EB82EFB008A1C91 /* ContractTagViewController.m */,
+				F1BD0D581EB83973008A1C91 /* AddContractTagViewController.h */,
+				F1BD0D591EB83973008A1C91 /* AddContractTagViewController.m */,
+				F1E537E81EB85301003E90B7 /* SelectContractViewController.h */,
+				F1E537E91EB85301003E90B7 /* SelectContractViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F1BD0D4E1EB82EE5008A1C91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F1BD0D4F1EB82EE5008A1C91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1E537EE1EB8746A003E90B7 /* UserSearchBar */,
+				F1E537EB1EB86C7A003E90B7 /* SelectPersonCell.h */,
+				F1E537EC1EB86C7A003E90B7 /* SelectPersonCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F1C02ADC1EA707CE001E1AA8 /* ContentTextView */ = {
@@ -4381,6 +4503,25 @@
 			path = DateUtil;
 			sourceTree = "<group>";
 		};
+		F1E537EE1EB8746A003E90B7 /* UserSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				F10DE08A1EC165E1006E01BB /* UserSearchBar */,
+				F1E537F31EB87653003E90B7 /* UserSearchBar.h */,
+				F1E537F41EB87653003E90B7 /* UserSearchBar.m */,
+			);
+			path = UserSearchBar;
+			sourceTree = "<group>";
+		};
+		F1E537EF1EB874E6003E90B7 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				F1E537F01EB8752A003E90B7 /* UITextField+DeleteBackward.h */,
+				F1E537F11EB8752A003E90B7 /* UITextField+DeleteBackward.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
 		F1EC9FB21EA5A126008F6E6B /* ChineseSorting */ = {
 			isa = PBXGroup;
 			children = (
@@ -4475,6 +4616,7 @@
 		F1EFFDF21EA0592E00D21293 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				F1E537EF1EB874E6003E90B7 /* UITextField */,
 				F1C02B7B1EA71796001E1AA8 /* UIBarButtonItem */,
 				F1EFFF1A1EA0671D00D21293 /* UIViewController */,
 				F1EFFF161EA066C700D21293 /* AppDelegate */,
@@ -4671,7 +4813,8 @@
 		F1EFFE431EA0592E00D21293 /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				F1EFFED51EA05A8F00D21293 /* Contract */,
+				F1BD0D3F1EB82EE5008A1C91 /* ContractList */,
+				F1BD0D4C1EB82EE5008A1C91 /* ContractTag */,
 				F1EFFED91EA05A8F00D21293 /* Find */,
 				F1EFFEDD1EA05A8F00D21293 /* Home */,
 				F1EFFEE11EA05A8F00D21293 /* Main */,
@@ -4828,46 +4971,6 @@
 			path = APP;
 			sourceTree = "<group>";
 		};
-		F1EFFED51EA05A8F00D21293 /* Contract */ = {
-			isa = PBXGroup;
-			children = (
-				F1EFFED61EA05A8F00D21293 /* Controller */,
-				F1EFFED71EA05A8F00D21293 /* Model */,
-				F1EFFED81EA05A8F00D21293 /* View */,
-			);
-			path = Contract;
-			sourceTree = "<group>";
-		};
-		F1EFFED61EA05A8F00D21293 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				F1C129251EA4C09E00253203 /* SearchResultViewController.h */,
-				F1C129261EA4C09E00253203 /* SearchResultViewController.m */,
-				F1EFFF211EA0962400D21293 /* ContractViewController.h */,
-				F1EFFF221EA0962400D21293 /* ContractViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		F1EFFED71EA05A8F00D21293 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F1EC9FB01EA59DC8008F6E6B /* AddressBook.json */,
-				F1C1292B1EA4C38200253203 /* FriendModel.h */,
-				F1C1292C1EA4C38200253203 /* FriendModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		F1EFFED81EA05A8F00D21293 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F1C129281EA4C0F100253203 /* AddressBookCell.h */,
-				F1C129291EA4C0F100253203 /* AddressBookCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		F1EFFED91EA05A8F00D21293 /* Find */ = {
 			isa = PBXGroup;
 			children = (
@@ -4965,6 +5068,8 @@
 			children = (
 				F1D721F51EB0A260003505C6 /* Message.h */,
 				F1D721F61EB0A260003505C6 /* Message.m */,
+				F10DE0921EC16F76006E01BB /* LGMessageModel.h */,
+				F10DE0931EC16F76006E01BB /* LGMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6108,7 +6213,6 @@
 				F1C129111EA4A63300253203 /* sharemore_video@3x.png in Resources */,
 				F1EFFEAE1EA0592E00D21293 /* Details.css in Resources */,
 				F1C1283C1EA4A63300253203 /* f_static_003@3x.png in Resources */,
-				F1EC9FB11EA59DC8008F6E6B /* AddressBook.json in Resources */,
 				F1C1285A1EA4A63300253203 /* f_static_018@2x.png in Resources */,
 				F1C128AA1EA4A63300253203 /* f_static_058@2x.png in Resources */,
 				F1C1284A1EA4A63300253203 /* f_static_010@2x.png in Resources */,
@@ -6401,6 +6505,7 @@
 				F1C1282E1EA4A63300253203 /* section0_emotion3@2x.png in Resources */,
 				F1C128851EA4A63300253203 /* f_static_039@3x.png in Resources */,
 				F100658F1EA341DC004E4A57 /* 1.jpg in Resources */,
+				F1BD0D521EB82EE5008A1C91 /* AddressBook.json in Resources */,
 				F10065BB1EA341DC004E4A57 /* jf-7.jpg in Resources */,
 				F1EFFDCB1EA0587100D21293 /* Assets.xcassets in Resources */,
 				F1C128301EA4A63300253203 /* section0_emotion5@2x.png in Resources */,
@@ -6554,7 +6659,10 @@
 				F1F15A231EADE8C200F4AD59 /* LBXScanViewController.m in Sources */,
 				F1F15AEF1EADE8C300F4AD59 /* ZXQRCodeDecoderMetaData.m in Sources */,
 				F1F15ACF1EADE8C300F4AD59 /* ZXUPCEANWriter.m in Sources */,
+				F1BD0D511EB82EE5008A1C91 /* SearchResultViewController.m in Sources */,
+				F1BD0D531EB82EE5008A1C91 /* FriendModel.m in Sources */,
 				F1F15A931EADE8C200F4AD59 /* ZXDataMatrixWriter.m in Sources */,
+				F1E537ED1EB86C7A003E90B7 /* SelectPersonCell.m in Sources */,
 				F1F15AB11EADE8C300F4AD59 /* ZXAbstractRSSReader.m in Sources */,
 				F10065D71EA34DC5004E4A57 /* ShareTableViewCell.m in Sources */,
 				F1EFFEB51EA0592E00D21293 /* NSData+AES.m in Sources */,
@@ -6564,9 +6672,11 @@
 				F10066C91EA35867004E4A57 /* YMReplyInputView.m in Sources */,
 				F1C02BAD1EA74928001E1AA8 /* WLAlertViewController.m in Sources */,
 				F10067441EA38721004E4A57 /* UIView+YYAdd.m in Sources */,
+				F1E537F51EB87653003E90B7 /* UserSearchBar.m in Sources */,
 				F1F15ACB1EADE8C300F4AD59 /* ZXUPCEANExtension2Support.m in Sources */,
 				F100674A1EA38721004E4A57 /* YYFPSLabel.m in Sources */,
 				F1F15A331EADE8C200F4AD59 /* ZXAztecDetectorResult.m in Sources */,
+				F1E537EA1EB85301003E90B7 /* SelectContractViewController.m in Sources */,
 				F1F15A641EADE8C200F4AD59 /* ZXBitArray.m in Sources */,
 				F1F15ABC1EADE8C300F4AD59 /* ZXCode39Writer.m in Sources */,
 				F1EFFE991EA0592E00D21293 /* NSArray+JSON.m in Sources */,
@@ -6577,7 +6687,6 @@
 				F1C663B41EA9E0B2009524B3 /* WalletReusableView.m in Sources */,
 				F1F157731EAD930800F4AD59 /* MWPhotoBrowser.m in Sources */,
 				F1F15A691EADE8C200F4AD59 /* ZXCharacterSetECI.m in Sources */,
-				F1EFFF231EA0962400D21293 /* ContractViewController.m in Sources */,
 				F1F157C31EADA91100F4AD59 /* JFLocation.m in Sources */,
 				F10066941EA351D4004E4A57 /* WSelectPhotoBrowserViewController.m in Sources */,
 				F100669D1EA351D4004E4A57 /* WSelectPhotoPickerCollectionView.m in Sources */,
@@ -6618,6 +6727,7 @@
 				F1C02B4E1EA715DF001E1AA8 /* ShareFileListModel.m in Sources */,
 				F1EFFEA61EA0592E00D21293 /* NSString+StringHeight.m in Sources */,
 				F1F15A9D1EADE8C200F4AD59 /* ZXAI01392xDecoder.m in Sources */,
+				F1BD0D571EB82EFB008A1C91 /* ContractTagViewController.m in Sources */,
 				F1EC9FBB1EA5BFD2008F6E6B /* HomeSearchViewController.m in Sources */,
 				F1C1291D1EA4A63300253203 /* FaceSourceManager.m in Sources */,
 				F1EC9FB81EA5A126008F6E6B /* pinyin.m in Sources */,
@@ -6676,7 +6786,6 @@
 				F1D721E01EB08935003505C6 /* CAXException.cpp in Sources */,
 				F1F15A381EADE8C200F4AD59 /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				F1F15AA81EADE8C200F4AD59 /* ZXRSSExpandedDecodedInformation.m in Sources */,
-				F1C1292A1EA4C0F100253203 /* AddressBookCell.m in Sources */,
 				F1C1291C1EA4A63300253203 /* FacePanel.m in Sources */,
 				F1F15AA61EADE8C200F4AD59 /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				F1F15AE01EADE8C300F4AD59 /* ZXPDF417.m in Sources */,
@@ -6784,7 +6893,6 @@
 				F1F15A901EADE8C200F4AD59 /* ZXDataMatrixTextEncoder.m in Sources */,
 				F1F15AA01EADE8C200F4AD59 /* ZXAI013x0xDecoder.m in Sources */,
 				F1F15A301EADE8C200F4AD59 /* ZXAztecSimpleToken.m in Sources */,
-				F1C129271EA4C09E00253203 /* SearchResultViewController.m in Sources */,
 				F1F15A221EADE8C200F4AD59 /* LBXScanView.m in Sources */,
 				F1F157761EAD930800F4AD59 /* MWZoomingScrollView.m in Sources */,
 				F1F15A721EADE8C200F4AD59 /* ZXStringUtils.m in Sources */,
@@ -6829,6 +6937,7 @@
 				F10067341EA38721004E4A57 /* YYTextSelectionView.m in Sources */,
 				F1F15AEA1EADE8C300F4AD59 /* ZXQRCodeBitMatrixParser.m in Sources */,
 				F100672C1EA38721004E4A57 /* YYTextContainerView.m in Sources */,
+				F1BD0D501EB82EE5008A1C91 /* ContractViewController.m in Sources */,
 				F1F157701EAD930800F4AD59 /* MWGridCell.m in Sources */,
 				F1F15AAE1EADE8C300F4AD59 /* ZXRSSExpandedPair.m in Sources */,
 				F1F15ABF1EADE8C300F4AD59 /* ZXEAN13Writer.m in Sources */,
@@ -6875,6 +6984,7 @@
 				F1EFFDC01EA0587100D21293 /* main.m in Sources */,
 				F1EFFEB71EA0592E00D21293 /* SecurityUtil.m in Sources */,
 				F100668B1EA351D4004E4A57 /* SDPhotoBrowser.m in Sources */,
+				F10DE0941EC16F76006E01BB /* LGMessageModel.m in Sources */,
 				F100673C1EA38721004E4A57 /* NSBundle+YYAdd.m in Sources */,
 				F1C1266D1EA4901000253203 /* CommentCell.m in Sources */,
 				F1F15AD11EADE8C300F4AD59 /* ZXModulusGF.m in Sources */,
@@ -6896,8 +7006,8 @@
 				F1F15AE91EADE8C300F4AD59 /* ZXPDF417Writer.m in Sources */,
 				F1F15AE31EADE8C300F4AD59 /* ZXPDF417Dimensions.m in Sources */,
 				F1F15A681EADE8C200F4AD59 /* ZXByteArray.m in Sources */,
-				F1C1292D1EA4C38200253203 /* FriendModel.m in Sources */,
 				F10066BF1EA355C6004E4A57 /* KZVideoListViewController.m in Sources */,
+				F1E537F21EB8752A003E90B7 /* UITextField+DeleteBackward.m in Sources */,
 				F1F15AB31EADE8C300F4AD59 /* ZXRSSDataCharacter.m in Sources */,
 				F1EFFEB21EA0592E00D21293 /* DetailViewController.m in Sources */,
 				F1F15ABB1EADE8C300F4AD59 /* ZXCode39Reader.m in Sources */,
@@ -6940,6 +7050,7 @@
 				F1F15A4F1EADE8C200F4AD59 /* ZXTelResultParser.m in Sources */,
 				F1F15A421EADE8C200F4AD59 /* ZXGeoParsedResult.m in Sources */,
 				F1F15AEC1EADE8C300F4AD59 /* ZXQRCodeDataMask.m in Sources */,
+				F10DE0911EC165E1006E01BB /* WJUserSearchBar.m in Sources */,
 				F1F15A961EADE8C200F4AD59 /* ZXMaxiCodeDecoder.m in Sources */,
 				F1EFFEB81EA0592E00D21293 /* WAESSecurtiy.m in Sources */,
 				F10066781EA351D4004E4A57 /* GLProgram.m in Sources */,
@@ -6949,6 +7060,7 @@
 				F10067421EA38721004E4A57 /* UIImage+YYWebImage.m in Sources */,
 				F1F15AA31EADE8C200F4AD59 /* ZXAI01weightDecoder.m in Sources */,
 				F1F15A461EADE8C200F4AD59 /* ZXParsedResult.m in Sources */,
+				F1BD0D541EB82EE5008A1C91 /* AddressBookCell.m in Sources */,
 				F1F15AB81EADE8C300F4AD59 /* ZXCodaBarWriter.m in Sources */,
 				F1F15A7F1EADE8C200F4AD59 /* ZXRGBLuminanceSource.m in Sources */,
 				F10067391EA38721004E4A57 /* YYTextRunDelegate.m in Sources */,
@@ -6957,6 +7069,7 @@
 				F1F158141EADE6B700F4AD59 /* UIAlertView+LBXAlertAction.m in Sources */,
 				F1C1291F1EA4A63300253203 /* PanelBottomView.m in Sources */,
 				F10066891EA351D4004E4A57 /* PKShortVideoSession.m in Sources */,
+				F1BD0D5A1EB83973008A1C91 /* AddContractTagViewController.m in Sources */,
 				F18DEBDB1EA89337006497B1 /* PersonAddressViewController.m in Sources */,
 				F10067301EA38721004E4A57 /* YYTextKeyboardManager.m in Sources */,
 				F10066901EA351D4004E4A57 /* WSelectPhotoAssets.m in Sources */,
@@ -6969,6 +7082,7 @@
 				F1F15A911EADE8C200F4AD59 /* ZXDataMatrixX12Encoder.m in Sources */,
 				F1F15A8E1EADE8C200F4AD59 /* ZXDataMatrixSymbolInfo.m in Sources */,
 				F1F15A861EADE8C200F4AD59 /* ZXDataMatrixASCIIEncoder.m in Sources */,
+				F10DE0901EC165E1006E01BB /* UITextField+WJ.m in Sources */,
 				F1F15A611EADE8C200F4AD59 /* ZXGenericGFPoly.m in Sources */,
 				F1F15A3C1EADE8C200F4AD59 /* ZXCalendarParsedResult.m in Sources */,
 				F1C663AB1EA9C7F9009524B3 /* WalletViewController.m in Sources */,

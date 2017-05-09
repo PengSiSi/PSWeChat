@@ -8,6 +8,8 @@
 
 #import "EditorView.h"
 #import "ChatRoomViewController.h"
+#import "LGMessageModel.h"
+#import "LGAudioKit.h"
 
 @interface EditorView ()<UITextViewDelegate>
 
@@ -15,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *emojButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (nonatomic, assign) BOOL isVoice; /**<是录音 */
 
 - (IBAction)voiceDidClick:(id)sender;
 - (IBAction)emojDidClick:(id)sender;
@@ -44,6 +47,7 @@
     self.textView.layer.borderColor =
     [UIColor colorWithWhite:0 alpha:0.1].CGColor;
     self.textView.delegate = self;
+    self.isVoice = YES;
 }
 
 #pragma mark - UITextViewDelegate
@@ -95,8 +99,24 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textChangedExt:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
-- (IBAction)voiceDidClick:(id)sender {
+- (IBAction)voiceDidClick:(UIButton *)sender {
     
+    CGRect textViewFrame = self.textView.frame;
+    // 隐藏textView,不能移除,移除会导致所有和他约束有关的子视图会移除.
+//    [self.textView setHidden:YES];
+    self.isVoice = !self.isVoice;
+    if (!_isVoice) {
+        [sender setImage:[UIImage imageNamed:@"Album_ToolViewKeyboard"] forState:UIControlStateNormal];
+        // 添加录音的按钮
+        [self addRecordButton];
+        self.recordButton.hidden = NO;
+        self.textView.hidden = YES;
+
+    } else {
+        [sender setImage:[UIImage imageNamed:@"chat_setmode_voice_btn_normal"] forState:UIControlStateNormal];
+        self.recordButton.hidden = YES;
+        self.textView.hidden = NO;
+    }
     if (self.voiceButtonClick) {
         self.voiceButtonClick();
     }
@@ -147,6 +167,56 @@
 - (void)textChangedExt: (NSNotification *)notification {
     
     [self textViewDidChange:self.textView];
+}
+
+- (void)addRecordButton {
+    
+    _recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_recordButton setBackgroundImage:[[UIImage imageNamed:@"btn_chatbar_press_normal" ] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal];
+    [_recordButton setBackgroundImage:[[UIImage imageNamed:@"btn_chatbar_press_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch] forState:UIControlStateSelected];
+    _recordButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [_recordButton setTitle:@"按住录音" forState:UIControlStateNormal];
+    [_recordButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [_recordButton addTarget:self action:@selector(startRecordVoice) forControlEvents:UIControlEventTouchDown];
+    [_recordButton addTarget:self action:@selector(cancelRecordVoice) forControlEvents:UIControlEventTouchUpOutside];
+    [_recordButton addTarget:self action:@selector(confirmRecordVoice) forControlEvents:UIControlEventTouchUpInside];
+    [_recordButton addTarget:self action:@selector(updateCancelRecordVoice) forControlEvents:UIControlEventTouchDragExit];
+    [_recordButton addTarget:self action:@selector(updateContinueRecordVoice) forControlEvents:UIControlEventTouchDragEnter];
+    [_recordButton setFrame:self.textView.frame];
+    [self addSubview:_recordButton];
+}
+
+- (void)startRecordVoice {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorViewStartRecordVoice)]) {
+        [self.delegate editorViewStartRecordVoice];
+    }
+}
+
+- (void)cancelRecordVoice {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorViewCancelRecordVoice)]) {
+        [self.delegate editorViewCancelRecordVoice];
+    }
+}
+
+- (void)confirmRecordVoice {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorViewConfirmRecordVoice)]) {
+        [self.delegate editorViewConfirmRecordVoice];
+    }
+}
+
+- (void)updateCancelRecordVoice {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorViewUpdateCancelRecordVoice)]) {
+        [self.delegate editorViewUpdateCancelRecordVoice];
+    }
+}
+
+- (void)updateContinueRecordVoice {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorViewUpdateContinueRecordVoice)]) {
+        [self.delegate editorViewUpdateContinueRecordVoice];
+    }
 }
 
 @end

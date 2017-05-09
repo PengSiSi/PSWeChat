@@ -13,6 +13,7 @@
 #import <MJExtension.h>
 #import "ChineseString.h"
 #import "pinyin.h"
+#import "ContractTagViewController.h"
 
 @interface ContractViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,SearchResultSelectedDelegate>
 {
@@ -168,7 +169,7 @@
     return sectionArr.count;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     AddressBookCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AddressBookCell class]) forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -225,6 +226,22 @@
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     
     return self.indexArray;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 2: {
+                // 标签
+                ContractTagViewController *contractTagVc = [ContractTagViewController new];
+                [self.navigationController pushViewController:contractTagVc animated:YES];
+                break;
+            }
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - UISearchBarDelegate

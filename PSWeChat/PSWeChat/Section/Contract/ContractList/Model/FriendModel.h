@@ -16,4 +16,9 @@
 @property(nonatomic,copy) NSString *phoneNO;
 @property (copy, nonatomic) NSString *firstLetter; // 首字母
 
+/**
+ 选择联系人模块需要多选使用
+ */
+@property (nonatomic, assign) BOOL isSelected;
+
 @end
