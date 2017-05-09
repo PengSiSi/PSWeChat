@@ -18,6 +18,7 @@
 #import <IQKeyboardManager.h>
 #import "LGMessageModel.h"
 #import "LGAudioKit.h"
+#import "LGTableViewCell.h"
 
 #define SOUND_RECORD_LIMIT 60
 #define DocumentPath  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
@@ -198,6 +199,8 @@ static NSUInteger const kShowSendTimeInterval = 60;
            forCellReuseIdentifier:kCellIdentifierLeft];
     [self.tableView registerClass:[TextMessageTableViewCell class]
            forCellReuseIdentifier:kCellIdentifierRight];
+    [self.tableView registerClass:[LGTableViewCell class]
+           forCellReuseIdentifier:NSStringFromClass([LGTableViewCell class])];
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview: self.tableView];
 }
@@ -228,10 +231,18 @@ static NSUInteger const kShowSendTimeInterval = 60;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *identify = [self chatRoomIdentifyer:indexPath];
-    TextMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
-    cell.model = self.dataArray[indexPath.row];
-    return cell;
+    id model = self.dataArray[indexPath.row];
+    if ([model isKindOfClass:[LGMessageModel class]]) {
+        LGTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LGTableViewCell class]) forIndexPath:indexPath];
+        [cell configureCellWithData:model];
+        return cell;
+    } else {
+        NSString *identify = [self chatRoomIdentifyer:indexPath];
+        TextMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
+        cell.model = self.dataArray[indexPath.row];
+        return cell;
+    }
+    return [[UITableViewCell alloc]init];
 }
 
 #pragma mark - UITableViewDelegate
@@ -248,9 +259,15 @@ static NSUInteger const kShowSendTimeInterval = 60;
 
 - (CGFloat)tableView: (UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    Message *model = self.dataArray[indexPath.row];
-    if (model.showSendTime) {
-        return 100;
+    id model = self.dataArray[indexPath.row];
+    if ([model class] == [LGMessageModel class]) {
+        return 80;
+    } else {
+        
+        Message *model = self.dataArray[indexPath.row];
+        if (model.showSendTime) {
+            return 100;
+        }
     }
     return 80;
 }
@@ -403,6 +420,9 @@ static NSUInteger const kShowSendTimeInterval = 60;
     messageModel.soundFilePath = [[LGSoundRecorder shareInstance] soundFilePath];
     messageModel.seconds = [[LGSoundRecorder shareInstance] soundRecordTime];
     [self.dataArray addObject:messageModel];
+    [self.tableView reloadData];
+    // 滚动到底部,记得要在刷新完表视图之后,不然会导致崩溃
+    [self scrollToBottom:YES];
     NSLog(@"录音条数为: %ld,时间是:%f path = %@",self.dataArray.count,messageModel.seconds, messageModel.soundFilePath);
 }
 
