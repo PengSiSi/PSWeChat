@@ -19,6 +19,7 @@
 #import "LGMessageModel.h"
 #import "LGAudioKit.h"
 #import "LGTableViewCell.h"
+#import "BottomPopView.h"
 
 #define SOUND_RECORD_LIMIT 60
 #define DocumentPath  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
@@ -26,12 +27,13 @@
 static NSInteger const kEditorHeight = 50;
 static NSUInteger const kShowSendTimeInterval = 60;
 
-@interface ChatRoomViewController ()<EditorViewDelegate>
+@interface ChatRoomViewController ()<EditorViewDelegate, LGTableViewCellDelegate, LGAudioPlayerDelegate>
 
 @property (strong, nonatomic) UITableView* tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) EditorView *editorView;
 @property (nonatomic, weak) NSTimer *timerOf60Second;
+@property (nonatomic, strong) BottomPopView *popView;
 
 @end
 
@@ -169,10 +171,17 @@ static NSUInteger const kShowSendTimeInterval = 60;
         [weakSelf updateNewOneRowInTableview];
     };
     
-    // 发送语音
-    self.editorView.voiceButtonClick = ^{
+    // 点击+号按钮
+    self.editorView.addButtonClick = ^{
         
-        // 开始录音
+        [self.view addSubview:self.popView];
+        self.popView.frame = CGRectMake(0, K_SCREEN_HEIGHT - 250, K_SCREEN_WIDTH, 250);
+        [weakSelf.editorView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.popView.mas_top).offset(-10);
+        }];
+        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.editorView.mas_top);
+        }];
     };
 }
 
@@ -234,6 +243,7 @@ static NSUInteger const kShowSendTimeInterval = 60;
     id model = self.dataArray[indexPath.row];
     if ([model isKindOfClass:[LGMessageModel class]]) {
         LGTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LGTableViewCell class]) forIndexPath:indexPath];
+        cell.delegate = self;
         [cell configureCellWithData:model];
         return cell;
     } else {
@@ -426,6 +436,43 @@ static NSUInteger const kShowSendTimeInterval = 60;
     NSLog(@"录音条数为: %ld,时间是:%f path = %@",self.dataArray.count,messageModel.seconds, messageModel.soundFilePath);
 }
 
+#pragma mark - LGTableViewCellDelegate
+
+- (void)voiceMessageTaped:(LGTableViewCell *)cell {
+    [cell setVoicePlayState:LGVoicePlayStatePlaying];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    LGMessageModel *messageModel = [self.dataArray objectAtIndex:indexPath.row];
+    // 这里记得要遵守代理,为下面播放完毕的协议调用
+    [LGAudioPlayer sharePlayer].delegate = self;
+    [[LGAudioPlayer sharePlayer] playAudioWithURLString:messageModel.soundFilePath atIndex:indexPath.row];
+}
+
+#pragma mark - LGAudioPlayerDelegate
+
+- (void)audioPlayerStateDidChanged:(LGAudioPlayerState)audioPlayerState forIndex:(NSUInteger)index {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    LGTableViewCell *voiceMessageCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    LGVoicePlayState voicePlayState;
+    switch (audioPlayerState) {
+        case LGAudioPlayerStateNormal:
+            voicePlayState = LGVoicePlayStateNormal;
+            break;
+        case LGAudioPlayerStatePlaying:
+            voicePlayState = LGVoicePlayStatePlaying;
+            break;
+        case LGAudioPlayerStateCancel:
+            voicePlayState = LGVoicePlayStateCancel;
+            break;
+            
+        default:
+            break;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [voiceMessageCell setVoicePlayState:voicePlayState];
+    });
+}
+
 #pragma mark - 懒加载
 
 - (NSMutableArray *)dataArray {
@@ -434,6 +481,14 @@ static NSUInteger const kShowSendTimeInterval = 60;
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+- (BottomPopView *)popView {
+    
+    if (!_popView) {
+        _popView = [BottomPopView bottomPopView];
+    }
+    return _popView;
 }
 
 @end

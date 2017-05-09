@@ -199,6 +199,10 @@
 		F10DE0941EC16F76006E01BB /* LGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE0931EC16F76006E01BB /* LGMessageModel.m */; };
 		F10DE09C1EC18EA5006E01BB /* LGCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE0991EC18EA5006E01BB /* LGCellContentView.m */; };
 		F10DE09D1EC18EA5006E01BB /* LGTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE09B1EC18EA5006E01BB /* LGTableViewCell.m */; };
+		F10DE0A01EC1A740006E01BB /* BottomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE09F1EC1A740006E01BB /* BottomPopView.m */; };
+		F10DE0A21EC1A870006E01BB /* BottomPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10DE0A11EC1A870006E01BB /* BottomPopView.xib */; };
+		F10DE0A51EC1AA35006E01BB /* BottomPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE0A41EC1AA35006E01BB /* BottomPopCell.m */; };
+		F10DE0A81EC1AC07006E01BB /* ItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DE0A71EC1AC07006E01BB /* ItemCollectionViewCell.m */; };
 		F17E48E41EAC37400025C0F8 /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F17E48E31EAC37400025C0F8 /* CollectViewController.m */; };
 		F17E48E71EAC38850025C0F8 /* AddCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F17E48E61EAC38850025C0F8 /* AddCollectViewController.m */; };
 		F18921A11EB17F29007D3FBD /* EditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F18921A01EB17F29007D3FBD /* EditorView.m */; };
@@ -1176,6 +1180,13 @@
 		F10DE0991EC18EA5006E01BB /* LGCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCellContentView.m; sourceTree = "<group>"; };
 		F10DE09A1EC18EA5006E01BB /* LGTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTableViewCell.h; sourceTree = "<group>"; };
 		F10DE09B1EC18EA5006E01BB /* LGTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTableViewCell.m; sourceTree = "<group>"; };
+		F10DE09E1EC1A740006E01BB /* BottomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomPopView.h; sourceTree = "<group>"; };
+		F10DE09F1EC1A740006E01BB /* BottomPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomPopView.m; sourceTree = "<group>"; };
+		F10DE0A11EC1A870006E01BB /* BottomPopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomPopView.xib; sourceTree = "<group>"; };
+		F10DE0A31EC1AA35006E01BB /* BottomPopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomPopCell.h; sourceTree = "<group>"; };
+		F10DE0A41EC1AA35006E01BB /* BottomPopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomPopCell.m; sourceTree = "<group>"; };
+		F10DE0A61EC1AC07006E01BB /* ItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCollectionViewCell.h; sourceTree = "<group>"; };
+		F10DE0A71EC1AC07006E01BB /* ItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCollectionViewCell.m; sourceTree = "<group>"; };
 		F17E48E21EAC37400025C0F8 /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
 		F17E48E31EAC37400025C0F8 /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
 		F17E48E51EAC38850025C0F8 /* AddCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectViewController.h; sourceTree = "<group>"; };
@@ -5098,6 +5109,13 @@
 				F189219F1EB17F29007D3FBD /* EditorView.h */,
 				F18921A01EB17F29007D3FBD /* EditorView.m */,
 				F18921A21EB17F31007D3FBD /* EditorView.xib */,
+				F10DE09E1EC1A740006E01BB /* BottomPopView.h */,
+				F10DE09F1EC1A740006E01BB /* BottomPopView.m */,
+				F10DE0A11EC1A870006E01BB /* BottomPopView.xib */,
+				F10DE0A31EC1AA35006E01BB /* BottomPopCell.h */,
+				F10DE0A41EC1AA35006E01BB /* BottomPopCell.m */,
+				F10DE0A61EC1AC07006E01BB /* ItemCollectionViewCell.h */,
+				F10DE0A71EC1AC07006E01BB /* ItemCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6330,6 +6348,7 @@
 				F1C1289F1EA4A63300253203 /* f_static_052@3x.png in Resources */,
 				F1C128D41EA4A63300253203 /* f_static_079@2x.png in Resources */,
 				F10065C51EA341DC004E4A57 /* test0.jpg in Resources */,
+				F10DE0A21EC1A870006E01BB /* BottomPopView.xib in Resources */,
 				F1C128311EA4A63300253203 /* section0_emotion6@2x.png in Resources */,
 				F100666F1EA351D4004E4A57 /* toast_vol_4@2x.png in Resources */,
 				F1C1283B1EA4A63300253203 /* f_static_003@2x.png in Resources */,
@@ -6679,6 +6698,7 @@
 				F100673F1EA38721004E4A57 /* NSString+YYAdd.m in Sources */,
 				F1EFFF191EA066C700D21293 /* AppDelegate+JKRRootViewController.m in Sources */,
 				F1F15AF51EADE8C300F4AD59 /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
+				F10DE0A81EC1AC07006E01BB /* ItemCollectionViewCell.m in Sources */,
 				F10066C91EA35867004E4A57 /* YMReplyInputView.m in Sources */,
 				F1C02BAD1EA74928001E1AA8 /* WLAlertViewController.m in Sources */,
 				F10067441EA38721004E4A57 /* UIView+YYAdd.m in Sources */,
@@ -6764,6 +6784,7 @@
 				F18DEBDF1EA89337006497B1 /* AddressModel.m in Sources */,
 				F10067311EA38721004E4A57 /* YYTextLayout.m in Sources */,
 				F1F15AC31EADE8C300F4AD59 /* ZXITFReader.m in Sources */,
+				F10DE0A51EC1AA35006E01BB /* BottomPopCell.m in Sources */,
 				F1F15AA21EADE8C200F4AD59 /* ZXAI01decoder.m in Sources */,
 				F1F15A831EADE8C200F4AD59 /* ZXDataMatrixDecoder.m in Sources */,
 				F10066811EA351D4004E4A57 /* PKFullScreenPlayerView.m in Sources */,
@@ -7031,6 +7052,7 @@
 				F1F15AFB1EADE8C300F4AD59 /* ZXQRCodeBlockPair.m in Sources */,
 				F1F15A431EADE8C200F4AD59 /* ZXGeoResultParser.m in Sources */,
 				F1F15A3A1EADE8C200F4AD59 /* ZXBizcardResultParser.m in Sources */,
+				F10DE0A01EC1A740006E01BB /* BottomPopView.m in Sources */,
 				F1D721F01EB08E63003505C6 /* DateUtil.m in Sources */,
 				F10067371EA38721004E4A57 /* YYTextParser.m in Sources */,
 				F100673B1EA38721004E4A57 /* NSAttributedString+YYText.m in Sources */,
