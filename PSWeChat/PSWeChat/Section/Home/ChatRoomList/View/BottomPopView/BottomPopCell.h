@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class BottomPopCell;
+
+@protocol BottomPopCellDelegate <NSObject>
+
+- (void)didSelectItemCollectionViewCell: (BottomPopCell *)cell indexPath: (NSIndexPath *)indexPath;
+
+@end
 
 @interface BottomPopCell : UICollectionViewCell
 
 @property (nonatomic, strong) NSArray *imageArray;
 @property (nonatomic, strong) NSArray *textArray;
 
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, assign) id<BottomPopCellDelegate> delegate;
 @end

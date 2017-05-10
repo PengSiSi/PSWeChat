@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ 点击底部View的Cell的block回调
+ @param indexPath indexPath
+ */
+typedef void(^DidSelectCollectionViewCellBlock)(NSIndexPath *indexPath);
+
 @interface BottomPopView : UIView <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageControlBottom;
+@property (nonatomic, copy) DidSelectCollectionViewCellBlock block ;
 
 + (BottomPopView *)bottomPopView;
 

@@ -9,7 +9,7 @@
 #import "BottomPopView.h"
 #import "BottomPopCell.h"
 
-@interface BottomPopView ()
+@interface BottomPopView ()<BottomPopCellDelegate>
 
 @property (nonatomic, strong) NSArray *imgsArray;
 @property (nonatomic, strong) NSArray *textsArray;
@@ -59,6 +59,8 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BottomPopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BottomPopCell class]) forIndexPath:indexPath];
+    cell.indexPath = indexPath;
+    cell.delegate = self;
     cell.imageArray = self.imgsArray[indexPath.section];
     cell.textArray = self.textsArray[indexPath.section];
     return cell;
@@ -82,6 +84,13 @@
     } else {
         self.pageControl.currentPage = offsetX / K_SCREEN_WIDTH;
     }
+}
+
+#pragma mark - BottomPopCellDelegate
+
+- (void)didSelectItemCollectionViewCell: (BottomPopCell *)cell indexPath: (NSIndexPath *)indexPath {
+    
+    !self.block ? : self.block(indexPath);
 }
 
 #pragma mark - Setter && Getter

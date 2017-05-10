@@ -69,6 +69,14 @@ static NSString *const ItemCollectionViewCellID = @"ItemCollectionViewCell";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ItemCollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectItemCollectionViewCell:indexPath:)]) {
+        [self.delegate didSelectItemCollectionViewCell:cell indexPath:indexPath];
+    }
+}
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
