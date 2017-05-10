@@ -29,17 +29,19 @@ static NSString *const ItemCollectionViewCellID = @"ItemCollectionViewCell";
     return self;
 }
 
+#pragma mark - 设置界面
+
 - (void)setupUI {
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(K_SCREEN_WIDTH / 4, (K_SCREEN_WIDTH / 4) - 10);
+    layout.itemSize = CGSizeMake(K_SCREEN_WIDTH / 4, 180 / 2);
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, K_SCREEN_WIDTH, self.contentView.height) collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, K_SCREEN_WIDTH, 180) collectionViewLayout:layout];
+    self.collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.contentView addSubview:self.collectionView];
+    [self addSubview:self.collectionView];
     [self.collectionView registerClass:[ItemCollectionViewCell class] forCellWithReuseIdentifier:ItemCollectionViewCellID];
 }
 
@@ -52,21 +54,27 @@ static NSString *const ItemCollectionViewCellID = @"ItemCollectionViewCell";
     self.collectionView.backgroundColor = [UIColor greenColor];
 }
 
+#pragma mark - UICollectionViewDataSource
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 8;
+    return self.imageArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemCollectionViewCellID forIndexPath:indexPath];
+    [cell configureCellWithImageName:self.imageArray[indexPath.item] text:self.textArray[indexPath.item]];
     cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegateFlowLayout
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(K_SCREEN_WIDTH / 4, K_SCREEN_WIDTH / 4 - 10);
+//    return CGSizeMake(K_SCREEN_WIDTH / 4, K_SCREEN_WIDTH / 4 - 10);
+    return CGSizeMake(K_SCREEN_WIDTH / 4, 180 / 2);
 }
 
 @end

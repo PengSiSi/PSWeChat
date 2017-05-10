@@ -10,4 +10,6 @@
 
 @interface ItemCollectionViewCell : UICollectionViewCell
 
+- (void)configureCellWithImageName: (NSString *)imageName text: (NSString *)text;
+
 @end

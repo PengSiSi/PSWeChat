@@ -175,12 +175,16 @@ static NSUInteger const kShowSendTimeInterval = 60;
     self.editorView.addButtonClick = ^{
         
         [self.view addSubview:self.popView];
-        self.popView.frame = CGRectMake(0, K_SCREEN_HEIGHT - 250, K_SCREEN_WIDTH, 250);
+        [weakSelf.view layoutIfNeeded];
+        [self.popView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.mas_equalTo(self.view);
+            make.height.mas_equalTo(180);
+        }];
         [weakSelf.editorView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.popView.mas_top).offset(-10);
+            make.bottom.mas_equalTo(self.view.mas_bottom).offset(-180);
         }];
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.editorView.mas_top);
+            make.bottom.mas_equalTo(self.view).offset(-180 - kEditorHeight);
         }];
     };
 }

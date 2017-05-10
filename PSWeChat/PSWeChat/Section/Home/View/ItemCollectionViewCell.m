@@ -23,10 +23,12 @@
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
         [self layoutUI];
-        [self testUI];
+//        [self testUI];
     }
     return self;
 }
+
+#pragma mark - setupUI
 
 - (void)setupUI {
     
@@ -49,8 +51,9 @@
     }];
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.imgView);
+        make.top.mas_equalTo(self.imgView.mas_bottom).offset(5);
+//        make.height.mas_equalTo(15);
         make.bottom.mas_equalTo(self.contentView).offset(-5);
-        make.height.mas_equalTo(15);
     }];
 }
 
@@ -59,6 +62,14 @@
     self.imgView.backgroundColor = [UIColor redColor];
     self.textLabel.backgroundColor = [UIColor blueColor];
     self.textLabel.text = @"拍视频";
+}
+
+#pragma mark - 配置Cell
+
+- (void)configureCellWithImageName: (NSString *)imageName text: (NSString *)text {
+    
+    self.imgView.image = [UIImage imageNamed:imageName];
+    self.textLabel.text = text;
 }
 
 @end

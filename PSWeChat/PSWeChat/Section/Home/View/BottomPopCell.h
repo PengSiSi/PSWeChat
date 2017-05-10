@@ -10,4 +10,7 @@
 
 @interface BottomPopCell : UICollectionViewCell
 
+@property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) NSArray *textArray;
+
 @end
