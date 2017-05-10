@@ -15,5 +15,4 @@ pod 'BaiduMapKit'
 pod 'ZYLocationManager'
 pod 'TTTAttributedLabel'
 
-
 end

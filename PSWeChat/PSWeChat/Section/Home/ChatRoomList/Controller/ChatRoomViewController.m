@@ -21,6 +21,8 @@
 #import "LGTableViewCell.h"
 #import "BottomPopView.h"
 
+#import "TZImagePickerController.h"
+
 #define SOUND_RECORD_LIMIT 60
 #define DocumentPath  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
@@ -266,6 +268,12 @@ static NSUInteger const kShowSendTimeInterval = 60;
         switch (indexPath.row) {
             case 0: {
                 NSLog(@"相册");
+                TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+                // 你可以通过block或者代理，来得到用户选择的照片.
+//                [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets) {
+//                    
+//                }];
+                [self presentViewController:imagePickerVc animated:YES completion:nil];
                 break;
             }
             case 1: {
